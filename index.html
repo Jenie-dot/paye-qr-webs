@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Studio | Create Your QR</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="page-shell">
+
+        <header class="topbar">
+            <a class="brand" href="#">
+                <span class="brand-mark">⌗</span>
+                <span>QR<span class="brand-light">STUDIO</span></span>
+            </a>
+
+            <div class="topbar-note">
+                <span class="live-dot"></span>
+                YOUR QR WORKSPACE
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">CREATE · CONNECT · SHARE</p>
+
+                <h1>Your links,<br><span>one scan away.</span></h1>
+
+                <p class="hero-text">
+                    Turn your links and Wi-Fi details into beautiful,
+                    ready-to-scan QR codes in just a few clicks.
+                </p>
+            </div>
+
+            <div class="hero-decoration" aria-hidden="true">
+                <div class="decor-square square-one"></div>
+                <div class="decor-square square-two"></div>
+                <div class="decor-circle">⌗</div>
+            </div>
+        </section>
+
+        <main class="workspace">
+
+            <div class="editor-column">
+
+            <section class="editor-card">
+
+                <div class="card-heading">
+                    <div>
+                        <h2>What do you want to share?</h2>
+                    </div>
+                </div>
+
+                <div class="type-options">
+
+                    <div class="type-option">
+                        <input type="radio" name="qtype" id="type-link" value="link" checked>
+                        <label for="type-link">
+                            <span class="option-icon"><i data-lucide="globe"></i><i data-lucide="link"></i></span>
+                            <span class="option-name">Website</span>
+                            <span class="option-desc">Share a link</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" name="qtype" id="type-wifi" value="wifi">
+                        <label for="type-wifi">
+                            <span class="option-icon"><i data-lucide="wifi"></i></span>
+                            <span class="option-name">Personal hotspot</span>
+                            <span class="option-desc">Share access</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" name="qtype" id="type-signup" value="signup">
+                        <label for="type-signup">
+                            <span class="option-icon"><i data-lucide="clipboard-list"></i></span>
+                            <span class="option-name">Class form</span>
+                            <span class="option-desc">Share a form</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" name="qtype" id="type-email" value="email">
+                        <label for="type-email">
+                            <span class="option-icon"><i data-lucide="mail"></i></span>
+                            <span class="option-name">Email</span>
+                            <span class="option-desc">Send a message</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" name="qtype" id="type-phone" value="phone">
+                        <label for="type-phone">
+                            <span class="option-icon"><i data-lucide="phone"></i></span>
+                            <span class="option-name">Phone</span>
+                            <span class="option-desc">Call a number</span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <!-- WEBSITE FIELDS -->
+                <div class="form-fields" data-type="link">
+                    <div class="field">
+                        <label for="link-url">Website URL</label>
+                        <input
+                            id="link-url"
+                            type="text"
+                            placeholder="https://example.com"
+                        >
+                    </div>
+                </div>
+
+                <!-- WIFI FIELDS -->
+                <div class="form-fields" data-type="wifi" hidden>
+
+                    <div class="field">
+                        <label for="wifi-ssid">Personal hotspot name</label>
+                        <input
+                            id="wifi-ssid"
+                            type="text"
+                            placeholder="eg. paye"
+                        >
+                    </div>
+
+                    <div class="field-grid">
+
+                        <div class="field">
+                            <label for="wifi-sec">Security type</label>
+
+                            <select id="wifi-sec">
+                                <option value="WPA">WPA / WPA2 / WPA3</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">No password</option>
+                            </select>
+                        </div>
+
+                        <div class="field" id="pass-wrap">
+                            <label for="wifi-pass">Hotspot password</label>
+                            <input
+                                id="wifi-pass"
+                                type="password"
+                                placeholder="********"
+                            >
+                        </div>
+
+                    </div>
+
+                    <label class="check-option">
+                        <input type="checkbox" id="wifi-show">
+                        <span>Show password</span>
+                    </label>
+
+                </div>
+
+                <!-- CLASS FORM FIELDS -->
+                <div class="form-fields" data-type="signup" hidden>
+                    <div class="field">
+                        <label for="su-url">Class sign-up form URL</label>
+                        <input
+                            id="su-url"
+                            type="text"
+                            placeholder="Paste your Google Form link"
+                        >
+                    </div>
+                </div>
+
+
+                <!-- EMAIL FIELDS -->
+                <div class="form-fields" data-type="email" hidden>
+                    <div class="field">
+                        <label for="em-to">Email address</label>
+                        <input id="em-to" type="email" placeholder="name@example.com">
+                    </div>
+                    <div class="field">
+                        <label for="em-subject">Subject (optional)</label>
+                        <input id="em-subject" type="text" placeholder="Hello!">
+                    </div>
+                    <div class="field">
+                        <label for="em-body">Message (optional)</label>
+                        <textarea id="em-body" rows="3" placeholder="Write your message"></textarea>
+                    </div>
+                </div>
+
+                <!-- PHONE FIELDS -->
+                <div class="form-fields" data-type="phone" hidden>
+                    <div class="field">
+                        <label for="ph-number">Phone number</label>
+                        <input id="ph-number" type="tel" placeholder="+63 912 345 6789">
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- STYLE CARD: SHAPE, COLORS, LOGO -->
+            <section class="editor-card style-card">
+
+                <div class="card-heading">
+                    <div>
+                        <p class="step-label">STYLE</p>
+                        <h2>Make it yours</h2>
+                    </div>
+                    <span class="heading-icon">✧</span>
+                </div>
+
+                <div class="group">
+                    <p class="group-label">QR shape</p>
+                    <div class="shape-options" id="shape-options" role="radiogroup" aria-label="QR shape"></div>
+                </div>
+
+                <div class="group">
+                    <p class="group-label">QR color</p>
+
+                    <div class="color-picker">
+                        <div class="sv-box" id="fg-sv" role="slider" tabindex="0"
+                             aria-label="QR color shade and brightness. Use the arrow keys to change it.">
+                            <div class="sv-handle" id="fg-sv-handle"></div>
+                        </div>
+
+                        <input type="range" class="hue-slider" id="fg-hue" min="0" max="360" value="0" aria-label="QR color hue">
+
+                        <div class="hex-row">
+                            <span class="hex-preview" id="fg-preview"></span>
+                            <input type="text" class="hex-input" id="fg-hex-input" value="#000000"
+                                   maxlength="7" spellcheck="false" autocomplete="off" aria-label="QR color hex code">
+                        </div>
+
+                        <div class="swatch-row" id="fg-swatches"></div>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <p class="group-label">Background color</p>
+                    <div class="swatch-row" id="bg-swatches"></div>
+                    <label class="color-custom">
+                        <input type="color" id="bg-custom" value="#ffffff" aria-label="Pick a custom background color">
+                        <span>Custom</span>
+                        <code id="bg-hex">#ffffff</code>
+                    </label>
+                    <p class="hint" id="color-warning" hidden></p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="group">
+                    <p class="group-label">Logo <span class="optional">(optional)</span></p>
+
+                    <label class="upload-area" id="logo-drop" for="logo-file">
+                        <input type="file" id="logo-file" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+                        <span class="upload-symbol">↑</span>
+                        <span class="upload-title">Upload your logo</span>
+                        <span class="upload-subtitle">PNG, JPG, SVG or WebP</span>
+                    </label>
+
+                    <div class="logo-details">
+                        <p id="logo-note">No logo yet. Upload one to put it in the middle of the code.</p>
+                        <button type="button" class="remove-button" id="logo-remove" hidden>Remove</button>
+                    </div>
+
+                    <div class="range-row" id="logo-size-wrap" hidden>
+                        <label for="logo-size">Logo size</label>
+                        <input type="range" id="logo-size" min="14" max="26" value="22">
+                    </div>
+                </div>
+
+            </section>
+
+            </div>
+
+            <!-- QR PREVIEW -->
+            <aside class="preview-card">
+
+                <div class="preview-top">
+                    <div>
+                        <p class="step-label">YOUR RESULT</p>
+                        <h2>QR Preview</h2>
+                    </div>
+
+                    <span class="preview-status">
+                        <span class="live-dot"></span> LIVE
+                    </span>
+                </div>
+
+                <p class="preview-description">
+                    Your QR code will appear here when your details are ready.
+                </p>
+
+                <div class="qr-stage">
+                    <div class="qr-paper">
+
+                        <img id="qr" alt="Generated QR code" hidden>
+
+                        <div id="empty" class="empty-state">
+                            <span class="empty-icon">⌗</span>
+                            <strong>Your QR goes here</strong>
+                            <span>Enter your details to get started.</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="scan-note">
+                    <span>✧</span>
+                    <span>Ready to scan and share</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="download-button"
+                    id="btn-png"
+                    disabled
+                >
+                    <span>↓</span> Download QR as PNG
+                </button>
+
+                <p class="status-message" id="msg" role="status"></p>
+
+            </aside>
+
+        </main>
+
+        <footer>
+            <span>QR STUDIO</span>
+            <span>Make sharing simpler.</span>
+        </footer>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
